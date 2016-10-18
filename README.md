@@ -5,17 +5,41 @@ You have two options for your hands on portion:
 1. Use an online regular expression site
 1. Locally edit solutions
 
-## Topics
+## Excersizes by topic
 
-[Warmup](warmup)
+### Groups
+
+[Capturing](capture)
+
+[Non-Capturing](non_capture)
+
+### Greedy vs not
+
+[Extracting text](greedy)
+
+### Stop backtracking with Possessive
+
+### Boundaries
 
 ### Posix Classes
 
 [Posix Classes](classes)
 
-### Positive lookahead
+### Changing options mid expression
+
+### Backreferences
+
+[Double letters](letters)
+
+[Double words](double_words)
+
+[Near words](near_words)
+
+### Lookaround
 
 [Password Validator](passwords)
+
+[Simon didn't say](simon)
 
 ### Recursive expressions
 
