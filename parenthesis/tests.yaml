@@ -1,0 +1,20 @@
+---
+  description: Match balanced parenthesis
+---
+  text: Easy (case)
+  match: true
+  groups:
+    - (case)
+---
+  text: (write (+ (read) (read)))
+  match: true
+  groups:
+    - (write (+ (read) (read)))
+---
+  text: ) nope (
+  match: false
+---
+  text: (o)(k)
+  match: true
+  groups:
+    - (o)

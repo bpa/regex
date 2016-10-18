@@ -1,0 +1,30 @@
+---
+  description: |+
+    Match floating point numbers
+      * Can start with +/-
+      * Only one . allowed, but can follow the sign
+      * Can end with ane exponent
+---
+  text: -0.4e3
+  match: true
+---
+  text: 7
+  match: true
+---
+  text: .7
+  match: true
+---
+  text: 0.7
+  match: true
+---
+  text: 7.
+  match: false
+---
+  text: 7e-3
+  match: true
+---
+  text: e-3
+  match: false
+---
+  text: -3
+  match: true
