@@ -7,6 +7,8 @@ You have two options for your hands on portion:
 
 ## Excersizes by topic
 
+### Boundaries
+
 ### Groups
 
 [Capturing](capture)
@@ -19,7 +21,7 @@ You have two options for your hands on portion:
 
 ### Stop backtracking with Possessive
 
-### Boundaries
+[Double quoted string](possessive)
 
 ### Posix Classes
 
@@ -58,3 +60,10 @@ You have two options for your hands on portion:
 1. Clone this repository
 1. Run `python watch.py`
 1. As you edit solutions, the results will be shown in the terminal
+
+# Extra fun for later
+
+[Large Printable Hex Regular Expression Crossword](http://www.i-programmer.info/images/stories/News/2014/Dec/B/grid.pdf)
+
+[Regular Expression Crosswords](https://regexcrossword.com/)
+
