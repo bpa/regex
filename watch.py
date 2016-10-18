@@ -62,44 +62,48 @@ class Watcher(pyinotify.ProcessEvent):
     def process_IN_MODIFY(self, event):
         if event.name.endswith('.regex'):
             sys.stdout.write("\033c");
-            with open(event.name.replace('.regex', '.yaml'), 'r') as y:
-                docs = yaml.load_all(y)
-                doc = docs.next()
-                print doc['description']
-                
-                with open(event.name) as x:
-                    try:
-                        re = regex.compile(x.read().strip())
-                    except Exception as e:
-                        print colored(e, 'red')
-                        return
+            tests = os.path.join(os.path.dirname(event.pathname), "tests.yaml")
+            try:
+                with open(tests, 'r') as y:
+                    docs = yaml.load_all(y)
+                    doc = docs.next()
+                    print doc['description']
                     
-                for doc in docs:
-                    match = re.search(doc['text'])
-                    ok = self.check(doc, match)
-                    if ok:
-                        print colored("PASS", 'white', 'on_green'), ' ',
-                    else:
-                        if doc.has_key('hint'):
-                            print ''
-                            print colored("HINT:", 'blue', 'on_yellow'),
-                            print ' ', doc['hint']
-                        print colored("FAIL", 'white', 'on_red'), ' ',
+                    with open(event.pathname) as x:
+                        try:
+                            re = regex.compile(x.read().strip())
+                        except Exception as e:
+                            print colored(e, 'red')
+                            return
+                        
+                    for doc in docs:
+                        match = re.search(doc['text'])
+                        ok = self.check(doc, match)
+                        if ok:
+                            print colored("PASS", 'white', 'on_green'), ' ',
+                        else:
+                            if doc.has_key('hint'):
+                                print ''
+                                print colored("HINT:", 'blue', 'on_yellow'),
+                                print ' ', doc['hint']
+                            print colored("FAIL", 'white', 'on_red'), ' ',
 
-                    if match:
-                        self.color(doc['text'], match)
-                    else:
-                        print doc['text']
+                        if match:
+                            self.color(doc['text'], match)
+                        else:
+                            print doc['text']
+            except Exception as e:
+                print "Bad test file: ", e
 
 sys.stdout.write("\033c");
 sys.stdout.flush();
 for f in os.listdir('.'):
-    if f.endswith('.yaml'):
-        with open(f.replace(".yaml", ".regex"), 'w+') as f:
+    if os.path.isdir(f):
+        with open(os.path.join(f,"solution.regex"), 'w+') as f:
             f.write('.*')
 
 watcher = Watcher()
 wm = pyinotify.WatchManager()
 notifier = pyinotify.Notifier(wm, watcher)
-wm.add_watch('.', pyinotify.IN_MODIFY)
+wm.add_watch('.', pyinotify.IN_MODIFY, rec=True)
 notifier.loop()
