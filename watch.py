@@ -81,6 +81,7 @@ class Watcher(pyinotify.ProcessEvent):
                         print colored("PASS", 'white', 'on_green'), ' ',
                     else:
                         if doc.has_key('hint'):
+                            print ''
                             print colored("HINT:", 'blue', 'on_yellow'),
                             print ' ', doc['hint']
                         print colored("FAIL", 'white', 'on_red'), ' ',

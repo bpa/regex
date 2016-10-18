@@ -1,0 +1,12 @@
+---
+  description: Capture the angry words (all uppper case)
+---
+  text: WHAT are you doing?
+  match: true
+  groups:
+    - WHAT
+---
+  text: Oops, forgot my CAPSLOCK
+  match: true
+  groups:
+    - CAPSLOCK
